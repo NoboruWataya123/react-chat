@@ -48,7 +48,7 @@ export default function Page({ params }: { params: { userId: string } }) {
     useEffect(() => {
         if (!userId) return;
 
-        fetch('http://90.156.226.224/api/user', {
+        fetch('https://90.156.226.224/api/user', {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -57,7 +57,7 @@ export default function Page({ params }: { params: { userId: string } }) {
             .then(senderData => {
                 setSender(senderData)
 
-                fetch(`http://90.156.226.224/api/users/${userId}`, {
+                fetch(`https://90.156.226.224/api/users/${userId}`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
@@ -77,7 +77,7 @@ export default function Page({ params }: { params: { userId: string } }) {
                                 setRemoteIsTyping(false);
                             }, 2000);
                         });
-                        fetch(`http://90.156.226.224/api/messages?receiverId=${userId}&senderId=${senderData.id}`, {
+                        fetch(`https://90.156.226.224/api/messages?receiverId=${userId}&senderId=${senderData.id}`, {
                             headers: {
                                 'Authorization': `Bearer ${localStorage.getItem('token')}`
                             }
@@ -88,7 +88,7 @@ export default function Page({ params }: { params: { userId: string } }) {
                             });
                     });
             });
-        fetch(`http://90.156.226.224/api/users/${userId}`, {
+        fetch(`https://90.156.226.224/api/users/${userId}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
@@ -117,7 +117,7 @@ export default function Page({ params }: { params: { userId: string } }) {
             setMessages((prevMessages) => [...prevMessages, parsedData]);
         });
 
-        fetch('http://90.156.226.224/api/messages/read', {
+        fetch('https://90.156.226.224/api/messages/read', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -173,7 +173,7 @@ export default function Page({ params }: { params: { userId: string } }) {
             message: input,
         };
 
-        fetch('http://90.156.226.224/api/messages', {
+        fetch('https://90.156.226.224/api/messages', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -191,7 +191,7 @@ export default function Page({ params }: { params: { userId: string } }) {
     };
 
     const typing = debounce(() => {
-        fetch('http://90.156.226.224/api/messages/typing', {
+        fetch('https://90.156.226.224/api/messages/typing', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

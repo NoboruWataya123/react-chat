@@ -31,7 +31,7 @@ export default function Home() {
         const storedToken = localStorage.getItem('token');
 
         if (storedToken) {
-            fetch('http://90.156.226.224/api/user', {
+            fetch('https://90.156.226.224/api/user', {
                 headers: {
                     'Authorization': `Bearer ${storedToken}`
                 }
@@ -39,7 +39,7 @@ export default function Home() {
                 .then(response => response.json())
                 .then(data => setUser(data))
 
-            fetch('http://90.156.226.224/api/online', {
+            fetch('https://90.156.226.224/api/online', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${storedToken}`
@@ -54,7 +54,7 @@ export default function Home() {
         const channel = pusher.subscribe('users');
         channel.bind('App\\Events\\UserOnline', function(data: any) {
             console.log(data);
-            fetch(`http://90.156.226.224/api/users/${data.userId}`, {
+            fetch(`https://90.156.226.224/api/users/${data.userId}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
@@ -94,7 +94,7 @@ export default function Home() {
                 <p className="text-xl">Login with GitHub to start chatting</p>
                 <Link
                     type="button"
-                    href={"http://90.156.226.224/api/login/github"}
+                    href={"https://90.156.226.224/api/login/github"}
                     className="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out mt-3"
                 >
                     Login with GitHub
